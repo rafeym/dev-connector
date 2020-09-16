@@ -18,9 +18,7 @@ router.get('/me', auth, async (req, res) => {
     }).populate('user', ['name', 'avatar'])
 
     if (!profile) {
-      return res
-        .status(400)
-        .json({ message: 'There is no profile for this user' })
+      return res.status(400).json({ msg: 'There is no profile for this user' })
     }
 
     return res.json(profile)
@@ -128,13 +126,13 @@ router.get('/user/:user_id', async (req, res) => {
     const profile = await Profile.findOne({
       user: req.params.user_id,
     }).populate('user', ['name', 'avatar'])
-    if (!profile) return res.status(400).json({ message: 'Profile not found.' })
+    if (!profile) return res.status(400).json({ msg: 'Profile not found.' })
 
     res.json(profile)
   } catch (err) {
     console.error(err.message)
     if (err.kind == 'ObjectId') {
-      return res.status(400).json({ message: 'Profile not found.' })
+      return res.status(400).json({ msg: 'Profile not found.' })
     }
     res.status(500).send('Server error.')
   }
@@ -327,7 +325,7 @@ router.get('/github/:username', async (req, res) => {
       if (error) console.error(error)
 
       if (response.statusCode !== 200) {
-        return res.status(404).json({ message: 'No github profile found' })
+        return res.status(404).json({ msg: 'No github profile found' })
       }
       res.json(JSON.parse(body))
     })

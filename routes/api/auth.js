@@ -42,7 +42,7 @@ router.post(
       if (!user) {
         return res
           .status(400)
-          .json({ errors: [{ message: 'Invalid credentials.' }] })
+          .json({ errors: [{ msg: 'Invalid credentials.' }] })
       }
 
       // Check if password is correct
@@ -50,7 +50,7 @@ router.post(
       if (!isMatch) {
         return res
           .status(400)
-          .json({ errors: [{ message: 'Invalid credentials' }] })
+          .json({ errors: [{ msg: 'Invalid credentials' }] })
       }
 
       // Return jsonwebtoken
