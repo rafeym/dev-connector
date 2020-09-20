@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Spinner from '../layout/Spinner'
 import DashboardActions from './DashboardActions'
+import Experience from './Experience'
+import Education from './Education'
 
 // Redux
 import { connect } from 'react-redux'
@@ -28,6 +30,8 @@ const Dashboard = ({
       {profile !== null ? (
         <>
           <DashboardActions />
+          <Experience experience={profile.experience} />
+          <Education education={profile.education} />
         </>
       ) : (
         <>
